@@ -4,10 +4,7 @@ This example is rather specific and uses custom hardware and software in our off
 
 
 ### Prerequisites
-
-You need to install the following dependency: https://github.com/jakubroztocil/httpie (HTTPie is a human friendly alternative to cURL).
-
-You also need to obtain a USER_ID value, which is the identifier of a specific door plate on the floor.
+You need to obtain a USER_ID value, which is the identifier of a specific door plate on the floor.
 
 
 ### Testing the agent
