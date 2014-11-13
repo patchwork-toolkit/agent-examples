@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
 			if (print_voc_only == 1) {
 				printf("0\n");
 			} else if (print_json == 1) {
-				printf(senml, 0, (int)t)
+				printf(senml, 0, (int)t);
 			} else {
 				printout("ERROR: Invalid result code: ", ret);
 			}
@@ -267,7 +267,7 @@ int main(int argc, char *argv[])
 			if (print_voc_only == 1) {
 				printf("%d\n", voc);
 			} else if (print_json == 1) {
-				printf(senml, voc, (int)t)
+				printf(senml, voc, (int)t);
 			} else {
 				printf("%04d-%02d-%02d %02d:%02d:%02d, ", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 				printf("VOC: %d, RESULT: OK\n", voc); 	
