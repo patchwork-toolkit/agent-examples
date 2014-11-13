@@ -42,6 +42,7 @@ void help() {
 	printf("Options:\n");
 	printf("-d = debug printout\n");
 	printf("-v = Print VOC value only, nothing returns if value out of range (450-2000)\n");
+	printf("-j = Print event in the SenML format\n");
 	printf("-o = One value and then exit\n");
 	printf("-h = Help, this printout\n");
 	exit(0);
@@ -87,13 +88,17 @@ int main(int argc, char *argv[])
 {
 	int ret, vendor, product, debug, counter, one_read;
 	int print_voc_only;
+	int print_json;
+	char *senml;
 	struct usb_device *dev;
 	char buf[1000];
 	// char str[5];
 	
 	debug = 0;
 	print_voc_only = 0;
+	print_json = 0;
 	one_read = 0; 	
+	senml = "{\"e\":[{\"n\":\"IAQ\",\"v\":%d,\"u\":\"VOC\",\"t\":%d}]}\n";
 	
 	vendor = 0x03eb;
 	product = 0x2013; 
@@ -109,6 +114,10 @@ int main(int argc, char *argv[])
 			
 			case 'v':
 				print_voc_only = 1;
+				break;
+
+			case 'j':
+				print_json = 1;
 				break;
 			
 			case 'o':
@@ -219,6 +228,8 @@ int main(int argc, char *argv[])
 		{
 			if (print_voc_only == 1) {
 				printf("0\n");
+			} else if (print_json == 1) {
+				printf(senml, 0, (int)t)
 			} else {
 				printout("ERROR: Invalid result code: ", ret);
 			}
@@ -255,6 +266,8 @@ int main(int argc, char *argv[])
 		if ( voc >= 450 && voc <= 2001) {
 			if (print_voc_only == 1) {
 				printf("%d\n", voc);
+			} else if (print_json == 1) {
+				printf(senml, voc, (int)t)
 			} else {
 				printf("%04d-%02d-%02d %02d:%02d:%02d, ", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 				printf("VOC: %d, RESULT: OK\n", voc); 	
