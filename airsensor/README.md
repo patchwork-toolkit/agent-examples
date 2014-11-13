@@ -28,6 +28,7 @@ AirSensor [options]
 Options:
 -d = debug printout
 -v = Print VOC value only, nothing returns if value out of range (450-2000)
+-j = Print event in the SenML format
 -o = One value and then exit
 -h = Help, this printout
 ```
