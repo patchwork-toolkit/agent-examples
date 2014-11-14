@@ -100,7 +100,7 @@ Here's an example of a device configuration for the Device Gateway (DGW). You ne
             {
               "type": "REST",
               "methods": [
-                "PUT"
+                "GET"
               ],
               "content-types": [
                 "text/plain"
