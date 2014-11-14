@@ -233,6 +233,7 @@ def main():
                     args, saveWidth, saveHeight, args.diskSpaceToReserve)
             out(DateTimeEncoder().encode(
                 dict(movement=True, measured=datetime.datetime.now())))
+            sys.stdout.flush()
 
         # Swap comparison buffers
         image1 = image2

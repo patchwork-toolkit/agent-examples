@@ -18,10 +18,7 @@ Other platforms: to be done soon.
 
 Run the script from the command line:
 
-    python simple.py
-
-Then type any string and press enter. If everything goes fine you should hear the synthesized voice speaking provided string.
-
+    python simple.py --help
 
 ### Device Gateway configuration
 
