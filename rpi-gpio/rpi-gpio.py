@@ -12,7 +12,7 @@ def read(pin, name, freq, senml):
 
         if senml:
             ts = int(time.mktime(time.gmtime()))
-            print json.dumps({"bn": name, "bt": ts, "e": [{"bv": bv}]})
+            print json.dumps({"bt": ts, "e": [{"n": name, "bv": bv}]})
         else:
             print bv
         time.sleep(freq)
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     parser.add_argument("-n", "--name", help="Sensor name (URI) for SenML output", type=str)
     parser.add_argument("--pull_up", dest="pull_up", help="Whether to create an internal pull up resistor", type=bool)
     parser.add_argument("--pull_down", dest="pull_down", help="Whether to create an internal pull down resistor", type=bool)
-    parser.set_defaults(freq=500)
+    parser.set_defaults(freq=1000)
     parser.set_defaults(pull_up=False)
     parser.set_defaults(pull_down=False)
 

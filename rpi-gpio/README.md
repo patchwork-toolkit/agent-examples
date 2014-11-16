@@ -32,7 +32,7 @@ False
 ...
 ```
 
-By default, the agent simple outputs boolean `True` or `False`. Use `-j` to output in JSON ([SenML](http://www.ietf.org/internet-drafts/draft-jennings-core-senml-00.txt)):
+By default, the agent simply outputs boolean `True` or `False`. Use `-j` to output in JSON ([SenML](http://www.ietf.org/internet-drafts/draft-jennings-core-senml-00.txt)):
 
 ```
 $ sudo python rpi-gpio.py -p 18 -n "http://demo-rpi/gpio/18" -j true
@@ -43,14 +43,14 @@ $ sudo python rpi-gpio.py -p 18 -n "http://demo-rpi/gpio/18" -j true
 For some sensors like [magnetic contac switch](http://www.adafruit.com/products/375) it might be necessarry to activate the internal resistor at RPi (pull-up/down):
 
 ```
-$ $ sudo python rpi-gpio.py -p 23 -n "http://demo-rpi/gpio/23" -j true --pull_up true
+$ sudo python rpi-gpio.py -p 23 -n "http://demo-rpi/gpio/23" -j true --pull_up true
 {"bt": 1416144524, "bn": "http://demo-rpi/gpio/23", "e": [{"bv": true}]}
 ...
 ```
 
 ### Device Gateway configuration
 
-Here's an example of a device configuration for the Device Gateway (DGW). You need to create a `airsensor.json` file (or any other unique name) in the `devices` configuration folder of the DWG.
+Here's an example of a device configuration for the Device Gateway (DGW). You need to create a `rpi-gpio.json` file (or any other unique name) in the `devices` configuration folder of the DWG.
 
 ```json
 {
@@ -94,6 +94,6 @@ Here's an example of a device configuration for the Device Gateway (DGW). You ne
 }
 ```
 
-In the example above, a "Motion" (should be unique for DGW) is declared with a single resource named "PIR". Consumers of the DGW API will be able to perform a HTTP GET request with a Content-Type "application/senml+json" to obtained the latest GPIO reading (in this case, PIR sensor). The same value can be obtained by subscribing to the MQTT topic.
+In the example above, a "Motion" (should be unique for DGW) device is declared with a single resource named "PIR". Consumers of the DGW API will be able to perform a HTTP GET request with a Content-Type "application/senml+json" to obtained the latest GPIO reading (in this case, PIR sensor). The same value can be obtained by subscribing to the MQTT topic.
 
-The agent is of type `service`, which means continuous execution or output of data. The agent program's `exec` key should be an absolute path to the `rpi-gpio.py` executable (make sure the program is executable).
+The agent is of type `service`, which means continuous execution and output of data. The agent program's `exec` key should be an absolute path to the `rpi-gpio.py` executable (make sure the program is executable).
