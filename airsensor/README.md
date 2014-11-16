@@ -111,4 +111,5 @@ Here's an example of a device configuration for the Device Gateway (DGW). You ne
       ]
     }
 
-In the example above a "AirSensor" (should be unique for DGW) is declared with a single resource named "VOC". Consumers of the DGW API will be able to perform a HTTP PUT request with a Content-Type equal "text/plain" and provide a message string in the HTTP request's body, which will be passed to a agent program (of type `service`, which means continuous execution or output of data). The agent program's `exec` key should be an absolute path to the `airsensor` executable (make sure the program is executable).
+In the example above a "AirSensor" (should be unique for DGW) is declared with a single resource named "VOC". Consumers of the DGW API will be able to perform a HTTP GET request with a Content-Type equal to "text/plain" to obtain the latest sensor reading. 
+The agent is of type `service`, which means continuous execution or output of data. The agent program's `exec` key should be an absolute path to the `airsensor` executable (make sure the program is executable).
