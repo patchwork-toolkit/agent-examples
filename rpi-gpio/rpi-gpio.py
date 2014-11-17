@@ -6,16 +6,19 @@ import RPi.GPIO as io
  
 def read(pin, name, freq, senml):
     while True:
-        bv = False
-        if io.input(pin):
-            bv = True
+        ts = int(time.mktime(time.gmtime()))
+        try:
+            bv = False
+            if io.input(pin):
+                bv = True
 
-        if senml:
-            ts = int(time.mktime(time.gmtime()))
-            print json.dumps({"bt": ts, "e": [{"n": name, "bv": bv}]})
-        else:
-            print bv
-        sys.stdout.flush()
+            if senml:
+                print json.dumps({"bt": ts, "e": [{"n": name, "bv": bv}]})
+            else:
+                print bv
+            sys.stdout.flush()
+        except:
+            pass
         time.sleep(freq)
 
 def setup(pin, pull_up, pull_down):

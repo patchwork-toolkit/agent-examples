@@ -8,46 +8,49 @@ def read(basename, sensor, freq, stype, senml):
     while True:
         ts = int(time.mktime(time.gmtime()))
 
-        if stype == "temp":
-            temp = sensor.read_temperature()
-            if senml:
-                print json.dumps({"bt": ts, "e": [{"n": basename + "temperature", "v": temp, "u": "degC"}]})
+        try:
+            if stype == "temp":
+                temp = sensor.read_temperature()
+                if senml:
+                    print json.dumps({"bt": ts, "e": [{"n": basename + "temperature", "v": temp, "u": "degC"}]})
+                else:
+                    print "%0.2f" % temp
+            elif stype == "pres":
+                pres = sensor.read_pressure()
+                if senml:
+                    print json.dumps({"bt": ts, "e": [{"n": basename + "pressure", "v": pres, "u": "Pa"}]})
+                else:
+                    print "%0.2f" % pres
+            elif stype == "alt":
+                alt = sensor.read_altitude()
+                if senml:
+                    print json.dumps({"bt": ts, "e": [{"n": basename + "altitude", "v": alt, "u": "m"}]})
+                else:
+                    print "%0.2f" % alt
+            elif stype == "slpres":
+                slpres = sensor.read_sealevel_pressure()
+                if senml:
+                    print json.dumps({"bt": ts, "e": [{"n": basename + "sealevel_pressure", "v": slpres, "u": "Pa"}]})
+                else:
+                    print "%0.2f" % slpres
             else:
-                print "%0.2f" % temp
-        elif stype == "pres":
-            pres = sensor.read_pressure()
-            if senml:
-                print json.dumps({"bt": ts, "e": [{"n": basename + "pressure", "v": pres, "u": "Pa"}]})
-            else:
-                print "%0.2f" % pres
-        elif stype == "alt":
-            alt = sensor.read_altitude()
-            if senml:
-                print json.dumps({"bt": ts, "e": [{"n": basename + "altitude", "v": alt, "u": "m"}]})
-            else:
-                print "%0.2f" % alt
-        elif stype == "slpres":
-            slpres = sensor.read_sealevel_pressure()
-            if senml:
-                print json.dumps({"bt": ts, "e": [{"n": basename + "sealevel_pressure", "v": slpres, "u": "Pa"}]})
-            else:
-                print "%0.2f" % slpres
-        else:
-            temp = sensor.read_temperature()
-            pres = sensor.read_pressure()
-            alt = sensor.read_altitude()
-            slpres = sensor.read_sealevel_pressure()
-            if senml:
-                print json.dumps({"bn": basename, "bt": ts, "e": [
-                    {"n": "temperature", "v": temp, "u": "degC"},
-                    {"n": "pressure", "v": pres, "u": "Pa"},
-                    {"n": "altitude", "v": alt, "u": "m"},
-                    {"n": "sealevel_pressure", "v": slpres, "u": "Pa"},
-                    ]})
-            else:
-                print "%0.2f %0.2f %0.2f %0.2f" % (temp, pres, alt, slpres)
+                temp = sensor.read_temperature()
+                pres = sensor.read_pressure()
+                alt = sensor.read_altitude()
+                slpres = sensor.read_sealevel_pressure()
+                if senml:
+                    print json.dumps({"bn": basename, "bt": ts, "e": [
+                        {"n": "temperature", "v": temp, "u": "degC"},
+                        {"n": "pressure", "v": pres, "u": "Pa"},
+                        {"n": "altitude", "v": alt, "u": "m"},
+                        {"n": "sealevel_pressure", "v": slpres, "u": "Pa"},
+                        ]})
+                else:
+                    print "%0.2f %0.2f %0.2f %0.2f" % (temp, pres, alt, slpres)
 
-        sys.stdout.flush()
+            sys.stdout.flush()
+        except:
+            pass
         time.sleep(freq)
 
 def setup():
