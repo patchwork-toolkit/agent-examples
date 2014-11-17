@@ -193,7 +193,7 @@ Here's an example of a device configuration for the Device Gateway (DGW). You ne
           ]
         }
       ]
-    },
+    }
   ]
 }
 ```
