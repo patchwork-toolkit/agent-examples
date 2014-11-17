@@ -47,6 +47,7 @@ def read(basename, sensor, freq, stype, senml):
             else:
                 print "%0.2f %0.2f %0.2f %0.2f" % (temp, pres, alt, slpres)
 
+        sys.stdout.flush()
         time.sleep(freq)
 
 def setup():

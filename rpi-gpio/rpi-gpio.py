@@ -15,6 +15,7 @@ def read(pin, name, freq, senml):
             print json.dumps({"bt": ts, "e": [{"n": name, "bv": bv}]})
         else:
             print bv
+        sys.stdout.flush()
         time.sleep(freq)
 
 def setup(pin, pull_up, pull_down):
