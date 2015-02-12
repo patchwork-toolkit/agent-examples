@@ -1,6 +1,6 @@
 ## Example Switch Service
 
-This is an example of a device agent manipulating a device state (on/off switch) over HTTP can be implemented.
+This is an example of a device agent manipulating a device state (on/off switch) over HTTP.
 
 ### Prerequisites
 
